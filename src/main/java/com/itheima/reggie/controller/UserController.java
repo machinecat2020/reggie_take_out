@@ -52,8 +52,7 @@ public class UserController {
             //session.setAttribute(phone,code);
 
             //将生成的验证码缓存到Redis中，并且设置有效期为5分钟
-            redisTemplate.opsForValue().set(phone,code,5, TimeUnit.MINUTES);
-
+            redisTemplate.opsForValue().set(phone,code,5,TimeUnit.MINUTES);
 
             return R.success("手机验证码短信发送成功");
         }
@@ -78,7 +77,7 @@ public class UserController {
         String code = map.get("code").toString();
 
         //从Session中获取保存的验证码
-       // Object codeInSession = session.getAttribute(phone);
+        //Object codeInSession = session.getAttribute(phone);
 
         //从Redis中获取缓存的验证码
         Object codeInSession = redisTemplate.opsForValue().get(phone);
